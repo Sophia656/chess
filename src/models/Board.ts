@@ -1,6 +1,7 @@
 import { Cell } from "./Cell";
 import { Colors } from "./Colors";
 import { Bishop } from "./figures/Bishop";
+import { Figure } from "./figures/Figure";
 import { King } from "./figures/King";
 import { Knight } from "./figures/Knight";
 import { Pawn } from "./figures/Pawn";
@@ -10,6 +11,8 @@ import { Rook } from "./figures/Rook";
 export class Board {
     // двумерный массив - строки(одномерный массив) и столбцы // таблицы - двумерный === матрица
     cells: Cell[][] = []
+    lostWhiteFigures: Figure[] = []
+    lostBlackFigures: Figure[] = []
 
     public initCells() {
         // строки
@@ -30,6 +33,8 @@ export class Board {
     public getCopyBoard(): Board {
         const newBoard = new Board()
         newBoard.cells = this.cells
+        newBoard.lostBlackFigures = this.lostBlackFigures
+        newBoard.lostWhiteFigures = this.lostWhiteFigures
         return newBoard
     }
 
