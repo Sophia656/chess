@@ -1,0 +1,57 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  background: linear-gradient(#777d82, #dbd6c9);
+}
+
+.app {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.board {
+  width: calc(64px * 8);
+  height: calc(64px * 8);
+  display: flex;
+  flex-wrap: wrap;
+  border: 3px solid #3d4042;
+}
+
+.cell {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cell img {
+  width: 48px;
+  height: 48px;
+  position: relative;
+}
+
+.black {
+  background-color: rgb(134, 161, 175);
+}
+
+.white {
+  background-color: rgb(209, 199, 176);
+}
+
+.selected {
+  background-color: rgb(142, 124, 109);
+}
+
+.available {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #3d4042;
+}
