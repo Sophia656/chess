@@ -12,8 +12,22 @@ export class King extends Figure {
     }
 
     canMove(target: Cell): boolean {
-        if(!super.canMove(target))
+        const diagonal = () => {
+            if(!super.canMove(target))
+                return false
+            const dx = Math.abs(this.cell.x - target.x)
+            const dy = Math.abs(this.cell.y - target.y)            
+            return (dx === 1 && dy === 1)
+        }
+        const gorizontalVertical = () => {
+            if (((target.y === this.cell.y) || (target.y === this.cell.y - 1) || (target.y === this.cell.y + 1))
+                && ((target.x === this.cell.x) || (target.x === this.cell.x - 1) || (target.x === this.cell.x + 1))
+                && this.cell.board.getCell(target.x, target.y).isEmpty() ) {
+                    return true;
+                }
             return false
-        return true
+        }
+
+        return diagonal() || gorizontalVertical()
     }
 }

@@ -8,13 +8,28 @@ interface TimerProps {
 }
 
 const Timer: FC<TimerProps> = ({currentPlayer, restart}) => {
-    const [whiteTime, setWhiteTime] = useState(600)
-    const [blackTime, setBlackTime] = useState(600)
+    const [whiteTime, setWhiteTime] = useState(300)
+    const [blackTime, setBlackTime] = useState(300)
     const timer = useRef<null | ReturnType<typeof setInterval>>(null)
 
     useEffect(() => {
         startTimer()
     }, [currentPlayer])
+
+    useEffect(() => {
+        stopTimer()
+    }, [whiteTime, blackTime])
+
+    function stopTimer() {
+        if (whiteTime === 0) {
+            setWhiteTime(0)
+            clearInterval(timer.current as NodeJS.Timeout)
+        }
+        if (blackTime === 0) {
+            setBlackTime(0)
+            clearInterval(timer.current as NodeJS.Timeout)
+        }
+    }
 
     function startTimer() {
         if (timer.current) {
@@ -34,12 +49,15 @@ const Timer: FC<TimerProps> = ({currentPlayer, restart}) => {
 
     const handleRestart = () => {
         restart()
-        setBlackTime(600)
-        setWhiteTime(600)
+        setBlackTime(300)
+        setWhiteTime(300)
+        startTimer()
     }
 
     return (
         <div className='timer'>
+            {whiteTime === 0 && <h2>BLACK WINNER!</h2>}
+            {blackTime === 0 && <h2>WHITE WINNER!</h2>}
             <h2>Черные - {blackTime}</h2>
             <h2>Белые - {whiteTime}</h2>
             <div>
