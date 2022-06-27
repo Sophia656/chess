@@ -7,6 +7,8 @@ interface LostFiguresProps {
 }
 
 const LostFigures: FC<LostFiguresProps> = ({title, figures}) => {
+
+    
     return (
         <div className='lost'>
             <h3>{title}</h3>

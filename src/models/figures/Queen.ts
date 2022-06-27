@@ -20,6 +20,8 @@ export class Queen extends Figure {
             return true;
         if(this.cell.isEmptyDiagonal(target))
             return true;
+        if(this.cell.isCheckmate(target.figure))
+            return true
         return false;
     }
 }

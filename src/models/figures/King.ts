@@ -23,11 +23,29 @@ export class King extends Figure {
             if (((target.y === this.cell.y) || (target.y === this.cell.y - 1) || (target.y === this.cell.y + 1))
                 && ((target.x === this.cell.x) || (target.x === this.cell.x - 1) || (target.x === this.cell.x + 1))
                 && this.cell.board.getCell(target.x, target.y).isEmpty() ) {
-                    return true;
+                    return true
                 }
             return false
         }
+        const gorizontalVerticalEnemy = () => {
+            if (((target.y === this.cell.y) || (target.y === this.cell.y - 1) || (target.y === this.cell.y + 1))
+                && ((target.x === this.cell.x) || (target.x === this.cell.x - 1) || (target.x === this.cell.x + 1))
+                && this.cell.isEnemy(this.cell.board.getCell(target.x, target.y)) ) {
+                    return true
+                }
+            return false
+        }
+        // const checkmate = () => {
+        //     if (((target.y === this.cell.y) || (target.y === this.cell.y - 1) || (target.y === this.cell.y + 1))
+        //         && ((target.x === this.cell.x) || (target.x === this.cell.x - 1) || (target.x === this.cell.x + 1))
+        //         && this.cell.board.getCell(target.x, target.y).isEmpty()
+        //         && this.cell.isEnemy(this.cell.board.getCell(target.x, target.y)) ) {
+        //             console.log('checkmate')
+        //             return true
+        //         }
+        //     return false
+        // }
 
-        return diagonal() || gorizontalVertical()
+        return diagonal() || gorizontalVertical() || gorizontalVerticalEnemy()
     }
 }

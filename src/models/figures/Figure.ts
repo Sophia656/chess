@@ -33,10 +33,13 @@ export class Figure {
         if (target.figure?.color === this.color)
             return false;
         // не можем походить на короля
-        if (target.figure?.name === FigureNames.KING)
+        if (target.figure?.name === FigureNames.KING) {
+            console.log('checkmate', target.figure?.name)
             return false;
+        }
+            
         return true;
     }
-    
+
     moveFigure(target: Cell) {}
 }

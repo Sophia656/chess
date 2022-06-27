@@ -1,6 +1,6 @@
 import { Board } from "./Board";
 import { Colors } from "./Colors";
-import { Figure } from "./figures/Figure";
+import { Figure, FigureNames } from "./figures/Figure";
 
 export class Cell {
     readonly x: number;
@@ -28,6 +28,14 @@ export class Cell {
     isEnemy(target: Cell): boolean {
         if (target.figure) {
             return this.figure?.color !== target.figure.color
+        }
+        return false
+    }
+
+    isCheckmate(figure: Figure | null): boolean {
+        if (figure?.name === FigureNames.KING) {
+            console.log('checkmate', figure)
+            return true
         }
         return false
     }
@@ -76,6 +84,7 @@ export class Cell {
         }
         return true
     }
+    
 
     // для самой ячейки тоже поменять фигуру(кольцевая зависимость)
     setFigure(figure: Figure) {
